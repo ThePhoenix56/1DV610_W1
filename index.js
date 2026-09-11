@@ -1,4 +1,6 @@
-
+const readLine = require('node:readline')
+const {stdin: input, stdout: output} = require('node:process')
+const rl = readLine.createInterface({input, output})
 
 function totalSales(totalAmount, paidAmount){
      
@@ -13,4 +15,8 @@ function totalSales(totalAmount, paidAmount){
 }
 
 
-totalSales(51, 50)
+rl.question('How much have you paid?', (answer) => {
+    totalSales(100, answer )
+
+    rl.close()
+})
