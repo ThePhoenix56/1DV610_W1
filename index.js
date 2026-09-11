@@ -1,25 +1,31 @@
-const readLine = require('node:readline')
-const {stdin: input, stdout: output} = require('node:process')
-const rl = readLine.createInterface({input, output})
+const readLine = require('node:readline');
+const { stdin: input, stdout: output } = require('node:process');
+const rl = readLine.createInterface({ input, output });
+const changes = [1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
 
-function totalSales(totalAmount, paidAmount){
-     
-    if(paidAmount >= totalAmount){
+function totalSales(totalAmount, paidAmount) {
 
-        return console.log( `Your change is: ${paidAmount - totalAmount} kr.`)
+    if (paidAmount >= totalAmount) {
+        totalChange = paidAmount - totalAmount;
+        for (const change of changes) {
+            if (totalChange >= change) {
+                totalChange -= change;
+                console.log(`Your change is: ${Math.floor(change)} kr.`);
+            }
+        }
+    }
 
-    } else {
+    else {
         return console.log(`You havent paid enough. You have to pay ${Math.abs(paidAmount - totalAmount)} kr.`)
     }
 
 }
-rl.question('How much has the customer bought for?', (answer) => {
-    var customerShop = answer;
-    rl.close()
-})
 
-rl.question('How much have you paid? ', (answer) => {
-    totalSales(customerShop, answer )
+rl.question('How much has the customer bought for? ', (answer) => {
+    var customerShop = parseInt(answer);
+    rl.question('How much have you paid? ', (answer) => {
+        totalSales(customerShop, answer)
 
-    rl.close()
+        rl.close()
+    })
 })
