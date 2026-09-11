@@ -2,7 +2,7 @@ const readLine = require('node:readline');
 const { stdin: input, stdout: output } = require('node:process');
 const rl = readLine.createInterface({ input, output });
 const changes = [1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
-const test = [];
+const totalArray = [];
 
 function totalSales(totalAmount, paidAmount) {
 
@@ -11,10 +11,10 @@ function totalSales(totalAmount, paidAmount) {
         for (const change of changes) {
             while (totalChange >= change) {
                 totalChange -= change;
-                test.push(`${Math.floor(change)} kr`);
+                totalArray.push(`${Math.floor(change)} kr`);
             }
         }
-        console.log('Your change is: ' + test.join(', '));
+        console.log('Your change is: ' + totalArray.join(', '));
     }
 
     else {
